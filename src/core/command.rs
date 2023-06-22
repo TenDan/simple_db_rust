@@ -30,7 +30,7 @@ fn read_command(cmd: &str) -> Result<PromptCommand, ErrorMessage> {
     }
 }
 
-fn run_command(prompt_command: PromptCommand, args: &str) -> Option<ErrorMessage> {
+fn run_command(prompt_command: PromptCommand, _args: Vec<(usize, &str)>) -> Option<ErrorMessage> {
     match prompt_command {
         PromptCommand::Help => get_help(),
         PromptCommand::Quit => exit(0),
@@ -57,7 +57,13 @@ pub fn command_prompt() -> Option<String> {
         Err(e) => return Some(get_command_error(prompt.0, &e.get_error_message())),
     };
 
-    run_command(prompt, "");
+    if let Some(err) = 
+        run_command(prompt, elements
+                                                .iter().skip(1).copied()
+                                                .collect()
+    ) {
+        println!("{}", err.get_error_message());
+    };
 
     return None;
 }
