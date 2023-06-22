@@ -57,15 +57,10 @@ pub fn command_prompt() -> Option<String> {
         Err(e) => return Some(get_command_error(prompt.0, &e.get_error_message())),
     };
 
-    if let Some(err) = 
-        run_command(prompt, elements
+    run_command(prompt, elements
                                                 .iter().skip(1).copied()
-                                                .collect()
-    ) {
-        println!("{}", err.get_error_message());
-    };
-
-    return None;
+                                                .collect())
+                                                .map(|err| { err.get_error_message() })
 }
 
 fn get_command_error(position: usize, message: &String) -> String {
