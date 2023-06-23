@@ -1,16 +1,4 @@
 
-struct CreateDatabaseOperation {
-    db_name: &'static str,
-}
-
-struct UpdateDatabaseOperation {
-    db_name: &'static str,
-}
-
-struct DeleteDatabaseOperation {
-    db_name: &'static str,
-}
-
-struct OpenDatabaseOperation {
+struct DatabaseOperation {
     db_name: &'static str,
 }
