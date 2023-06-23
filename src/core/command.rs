@@ -34,9 +34,8 @@ fn run_command(prompt_command: PromptCommand, _args: Vec<(usize, &str)>) -> Opti
     match prompt_command {
         PromptCommand::Help => get_help(),
         PromptCommand::Quit => exit(0),
-        _ => println!("Not implemented yet"),
-    };
-    None
+        _ => Some(ErrorMessage::NotImplemented(String::from("Not implemented yet"))),
+    }
 }
 
 pub fn command_prompt() -> Option<String> {

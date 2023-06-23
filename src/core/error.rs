@@ -2,6 +2,7 @@
 
 pub enum ErrorMessage {
     CommandNotFound(String),
+    NotImplemented(String),
     Other(String)
 }
 
